@@ -1,0 +1,18 @@
+.navbar-text {
+    color: white;
+    font-weight: bold;
+  }
+
+  .countdown-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .countdown-icon {
+    margin-right: 5px;
+    font-size: 20px;
+  }
+
+  .countdown-value {
+    font-size: 24px;
+  }

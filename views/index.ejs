@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal do Aluno</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+  </nav>
+
+  <div class="container" style="background-color: #f2f2f2; margin-top: 10px;">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="<%= foto %>" style="width: 150px; height: 150px; border-radius: 10px;" alt="Imagem" class="img-fluid">
+      </div>
+      <div class="col-md-6">
+        <h2><strong><%= nome %></strong></h2>
+        <p>Cursando o <%= semestre %>º Semestre</p>
+        <p><%= email %></p>
+        <p>RA: <%= ra %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="background-color: #f2f2f2;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Matérias</th>
+          <th>Média Final</th>
+          <th>Faltas</th>
+          <th>Presenças</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= notas[0].disciplina %></td>
+          <td><%= (notas[0].nota === '0,0') ? '-' : notas[0].nota %></td>
+          <td><%= (faltas[0]?.faltas) ? faltas[0].faltas : '-' %></td>
+          <td><%= (faltas[0]?.faltas) ? faltas[0].presenca : '-' %></td>
+          <td><img src="<%= notas[0].estado %>" alt="Status da Matéria" class="status"></td>
+        </tr>
+        <tr>
+            <td><%= notas[1].disciplina %></td>
+            <td><%= (notas[1].nota === '0,0') ? '-' : notas[1].nota %></td>
+            <td><%= (faltas[1]?.faltas) ? faltas[1].faltas : '-' %></td>
+            <td><%= (faltas[1]?.faltas) ? faltas[1].presenca : '-' %></td>
+            <td><img src="<%= notas[1].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+          <tr>
+            <td><%= notas[2].disciplina %></td>
+            <td><%= (notas[2].nota === '0,0') ? '-' : notas[2].nota %></td>
+            <td><%= (faltas[2]?.faltas) ? faltas[2].faltas : '-' %></td>
+            <td><%= (faltas[2]?.faltas) ? faltas[2].presenca : '-' %></td>
+            <td><img src="<%= notas[2].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+          <tr>
+            <td><%= notas[3].disciplina %></td>
+            <td><%= (notas[3].nota === '0,0') ? '-' : notas[3].nota %></td>
+            <td><%= (faltas[3]?.faltas) ? faltas[3].faltas : '-' %></td>
+            <td><%= (faltas[3]?.faltas) ? faltas[3].presenca : '-' %></td>
+            <td><img src="<%= notas[3].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+          <tr>
+            <td><%= notas[4].disciplina %></td>
+            <td><%= (notas[4].nota === '0,0') ? '-' : notas[4].nota %></td>
+            <td><%= (faltas[4]?.faltas) ? faltas[4].faltas : '-' %></td>
+            <td><%= (faltas[4]?.faltas) ? faltas[4].presenca : '-' %></td>
+            <td><img src="<%= notas[4].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+          <tr>
+            <td><%= notas[5].disciplina %></td>
+            <td><%= (notas[5].nota === '0,0') ? '-' : notas[5].nota %></td>
+            <td><%= (faltas[5]?.faltas) ? faltas[5].faltas : '-' %></td>
+            <td><%= (faltas[5]?.faltas) ? faltas[5].presenca : '-' %></td>
+            <td><img src="<%= notas[5].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+          <tr>
+            <td><%= notas[6].disciplina %></td>
+            <td><%= (notas[6].nota === '0,0') ? '-' : notas[6].nota %></td>
+            <td><%= (faltas[6]?.faltas) ? faltas[6].faltas : '-' %></td>
+            <td><%= (faltas[6]?.faltas) ? faltas[6].presenca : '-' %></td>
+            <td><img src="<%= notas[6].estado %>" alt="Status da Matéria" class="status"></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+    function updateCountdown() {
+      var remainingTime = 2 * 10;
+      var interval = setInterval(function() {
+        var minutes = Math.floor(remainingTime / 60);
+        var seconds = remainingTime % 60;
+
+        remainingTime--;
+
+        if (remainingTime < 0) {
+          clearInterval(interval);
+          window.location.href = "https://fatecjales.tk/";
+        }
+      }, 1000);
+    }
+
+    window.addEventListener("load", updateCountdown);
+  </script>
+</body>
+</html>
