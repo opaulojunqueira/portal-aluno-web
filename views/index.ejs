@@ -8,19 +8,55 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+
+  <% if (showModal) { %>
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">⚠ Rematrículas abertas!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>⏰ Tal período encerra-se no dia 22 de Julho de 2023. 😀👇 Faça sua rematrícula, clique no botão abaixo para ir ao portal SIGA.</p>
+            <!-- Use the responseData here as needed -->
+          </div>
+          <div class="modal-footer">
+            <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" class="btn btn-danger" data-dismiss="modal">Realizar Rematrícula</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // Código para fechar o modal quando o botão "Close" é clicado
+      $(document).ready(function() {
+        // Adicione um manipulador de eventos para o botão "Close"
+        $('.modal [data-dismiss="modal"]').on('click', function() {
+          console.log('AAA')
+          // Ocultar o modal quando o botão é clicado
+          $('.modal').hide();
+        });
+      });
+    </script>
+  <% } %>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-danger">
   </nav>
 
   <div class="container" style="background-color: #f2f2f2; margin-top: 10px;">
     <div class="row">
       <div class="col-md-6">
-        <img src="<%= foto %>" style="width: 150px; height: 150px; border-radius: 10px;" alt="Imagem" class="img-fluid">
+        <img src="<%= responseData.foto %>" style="width: 150px; height: 150px; border-radius: 10px;" alt="Imagem" class="img-fluid">
       </div>
       <div class="col-md-6">
-        <h2><strong><%= nome %></strong></h2>
-        <p>Cursando o <%= semestre %>º Semestre</p>
-        <p><%= email %></p>
-        <p>RA: <%= ra %></p>
+        <h2><strong><%= responseData.nome %></strong></h2>
+        <p>Cursando o <%= responseData.semestre %>º Semestre</p>
+        <p><%= responseData.email %></p>
+        <p>RA: <%= responseData.ra %></p>
       </div>
     </div>
   </div>
@@ -38,65 +74,64 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= notas[0].disciplina %></td>
-          <td><%= (notas[0].nota === '0,0') ? '-' : notas[0].nota %></td>
-          <td><%= (faltas[0]?.faltas) ? faltas[0].faltas : '-' %></td>
-          <td><%= (faltas[0]?.faltas) ? faltas[0].presenca : '-' %></td>
-          <td><img src="<%= notas[0].estado %>" alt="Status da Matéria" class="status"></td>
+          <td><%= responseData.notas[0].disciplina %></td>
+          <td><%= (responseData.notas[0].nota === '0,0') ? '-' : responseData.notas[0].nota %></td>
+          <td><%= (responseData.faltas[0]?.faltas) ? responseData.faltas[0].faltas : '-' %></td>
+          <td><%= (responseData.faltas[0]?.faltas) ? responseData.faltas[0].presenca : '-' %></td>
+          <td><img src="<%= responseData.notas[0].estado %>" alt="Status da Matéria" class="status"></td>
         </tr>
         <tr>
-            <td><%= notas[1].disciplina %></td>
-            <td><%= (notas[1].nota === '0,0') ? '-' : notas[1].nota %></td>
-            <td><%= (faltas[1]?.faltas) ? faltas[1].faltas : '-' %></td>
-            <td><%= (faltas[1]?.faltas) ? faltas[1].presenca : '-' %></td>
-            <td><img src="<%= notas[1].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[1].disciplina %></td>
+            <td><%= (responseData.notas[1].nota === '0,0') ? '-' : responseData.notas[1].nota %></td>
+            <td><%= (responseData.faltas[1]?.faltas) ? responseData.faltas[1].faltas : '-' %></td>
+            <td><%= (responseData.faltas[1]?.faltas) ? responseData.faltas[1].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[1].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
           <tr>
-            <td><%= notas[2].disciplina %></td>
-            <td><%= (notas[2].nota === '0,0') ? '-' : notas[2].nota %></td>
-            <td><%= (faltas[2]?.faltas) ? faltas[2].faltas : '-' %></td>
-            <td><%= (faltas[2]?.faltas) ? faltas[2].presenca : '-' %></td>
-            <td><img src="<%= notas[2].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[2].disciplina %></td>
+            <td><%= (responseData.notas[2].nota === '0,0') ? '-' : responseData.notas[2].nota %></td>
+            <td><%= (responseData.faltas[2]?.faltas) ? responseData.faltas[2].faltas : '-' %></td>
+            <td><%= (responseData.faltas[2]?.faltas) ? responseData.faltas[2].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[2].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
           <tr>
-            <td><%= notas[3].disciplina %></td>
-            <td><%= (notas[3].nota === '0,0') ? '-' : notas[3].nota %></td>
-            <td><%= (faltas[3]?.faltas) ? faltas[3].faltas : '-' %></td>
-            <td><%= (faltas[3]?.faltas) ? faltas[3].presenca : '-' %></td>
-            <td><img src="<%= notas[3].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[3].disciplina %></td>
+            <td><%= (responseData.notas[3].nota === '0,0') ? '-' : responseData.notas[3].nota %></td>
+            <td><%= (responseData.faltas[3]?.faltas) ? responseData.faltas[3].faltas : '-' %></td>
+            <td><%= (responseData.faltas[3]?.faltas) ? responseData.faltas[3].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[3].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
           <tr>
-            <td><%= notas[4].disciplina %></td>
-            <td><%= (notas[4].nota === '0,0') ? '-' : notas[4].nota %></td>
-            <td><%= (faltas[4]?.faltas) ? faltas[4].faltas : '-' %></td>
-            <td><%= (faltas[4]?.faltas) ? faltas[4].presenca : '-' %></td>
-            <td><img src="<%= notas[4].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[4].disciplina %></td>
+            <td><%= (responseData.notas[4].nota === '0,0') ? '-' : responseData.notas[4].nota %></td>
+            <td><%= (responseData.faltas[4]?.faltas) ? responseData.faltas[4].faltas : '-' %></td>
+            <td><%= (responseData.faltas[4]?.faltas) ? responseData.faltas[4].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[4].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
           <tr>
-            <td><%= notas[5].disciplina %></td>
-            <td><%= (notas[5].nota === '0,0') ? '-' : notas[5].nota %></td>
-            <td><%= (faltas[5]?.faltas) ? faltas[5].faltas : '-' %></td>
-            <td><%= (faltas[5]?.faltas) ? faltas[5].presenca : '-' %></td>
-            <td><img src="<%= notas[5].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[5].disciplina %></td>
+            <td><%= (responseData.notas[5].nota === '0,0') ? '-' : responseData.notas[5].nota %></td>
+            <td><%= (responseData.faltas[5]?.faltas) ? responseData.faltas[5].faltas : '-' %></td>
+            <td><%= (responseData.faltas[5]?.faltas) ? responseData.faltas[5].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[5].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
           <tr>
-            <td><%= notas[6].disciplina %></td>
-            <td><%= (notas[6].nota === '0,0') ? '-' : notas[6].nota %></td>
-            <td><%= (faltas[6]?.faltas) ? faltas[6].faltas : '-' %></td>
-            <td><%= (faltas[6]?.faltas) ? faltas[6].presenca : '-' %></td>
-            <td><img src="<%= notas[6].estado %>" alt="Status da Matéria" class="status"></td>
+            <td><%= responseData.notas[6].disciplina %></td>
+            <td><%= (responseData.notas[6].nota === '0,0') ? '-' : responseData.notas[6].nota %></td>
+            <td><%= (responseData.faltas[6]?.faltas) ? responseData.faltas[6].faltas : '-' %></td>
+            <td><%= (responseData.faltas[6]?.faltas) ? responseData.faltas[6].presenca : '-' %></td>
+            <td><img src="<%= responseData.notas[6].estado %>" alt="Status da Matéria" class="status"></td>
           </tr>
       </tbody>
     </table>
   </div>
-
+  
   <div class="container">
     <a class="btn btn-danger" href="/portal/historico" role="button">Histórico Completo</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-
     function updateCountdown() {
       var remainingTime = 2 * 60;
       var interval = setInterval(function() {

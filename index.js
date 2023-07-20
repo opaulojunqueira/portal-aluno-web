@@ -10,11 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((err, req, res, next) => {
     if (err && err.message === 'ERR_CACHE_MISS') {
-      res.redirect('/');
+        res.redirect('/');
     } else {
-      next();
+        next();
     }
-  });
+});
 
 app.get('/', (req, res) => {
     res.render('login');
@@ -28,7 +28,16 @@ app.post('/portal', async (req, res) => {
             login: usuario,
             senha: senha
         });
-        res.render('index', response.data);
+
+        const currentDate = new Date();
+        const startModalDate = new Date('2023-07-17');
+        const endModalDate = new Date('2023-07-22');
+
+        if (currentDate >= startModalDate && currentDate <= endModalDate) {
+            res.render('index', { responseData: response.data, showModal: true });
+        } else {
+            res.render('index', { responseData: response.data, showModal: true });
+        }
     } catch (error) {
         console.error(error);
     }
